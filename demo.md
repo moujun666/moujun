@@ -36,47 +36,20 @@ public int[] twoSum(int[] numbers, int target) {
   </main>
 </template>
 
-<script>
-import PageEdit from '@theme/components/PageEdit.vue'
-import PageNav from '@theme/components/PageNav.vue'
-import { HIDE_VALINE_PATHS } from './../config.js'
-
-export default {
-    components: { PageEdit, PageNav },
-    props: ['sidebarItems'],
-
-    data() {
-        return {
-            visibleValine: true
-        }
-    },
-
-    watch: {
-        $route: {
-            handler (to, from) {
-                let isHide = HIDE_VALINE_PATHS.includes(to.path)
-                this.visibleValine = !isHide
-            },
-            immediate: true
+```CPP
+public int[] twoSum(int[] numbers, int target) {
+    if (numbers == null) return null;
+    int i = 0, j = numbers.length - 1;
+    while (i < j) {
+        int sum = numbers[i] + numbers[j];
+        if (sum == target) {
+            return new int[]{i + 1, j + 1};
+        } else if (sum < target) {
+            i++;
+        } else {
+            j--;
         }
     }
-}
-</script>
-
-<style lang="stylus">
-@require '../styles/wrapper.styl'
-
-.page
-  padding-bottom 2rem
-  display block
-
-.u-valine-wrap {
-    position: relative;
-    top: 142px;
-    left: 48px;
-    max-width: 840px;
-    height: 20px;
-    margin: 0 auto;
+    return null;
 }
 
-</style>
